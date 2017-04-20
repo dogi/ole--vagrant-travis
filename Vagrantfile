@@ -91,8 +91,16 @@ Vagrant.configure(2) do |config|
     cd ole
     git clone https://github.com/open-learning-exchange/BeLL-Apps.git
     cd BeLL-Apps
-    git checkout 0.12.65
+    git checkout 0.12.102
+
     chmod +x node_modules/.bin/couchapp
+    cd app
+    python minify_html.py
+    mv MyApp/index.html MyApp/index1.html
+    mv MyApp/index2.html MyApp/index.html
+    mv nation/index.html nation/index1.html
+    mv nation/index2.html nation/index.html
+    cd ..
 
     # create install_linux
     echo "node_modules/.bin/couchapp push \\$1 \\$2" > pushDocToDb.sh
